@@ -39,11 +39,11 @@ subheading = ctk.CTkLabel(
 )
 subheading.pack(padx=20, pady=(0, 10), anchor="w")
 
-# Scrollable Frame for tasks
+
 task_list_frame = ctk.CTkScrollableFrame(app, fg_color="#FAF3E0", width=400, height=350)
 task_list_frame.pack(padx=10, pady=10, fill="both", expand=True)
 
-# Function to create a task card
+
 def create_task_card(task_text):
     color = random.choice(task_colors)
     card = ctk.CTkFrame(task_list_frame, fg_color=color, corner_radius=10)
@@ -64,7 +64,7 @@ def create_task_card(task_text):
     checkbox.pack(padx=10, pady=10, anchor="w")
     tasks.append((card, checkbox, var))
 
-# Entry and Add Button
+
 entry_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 entry_frame.pack(pady=5)
 
@@ -80,7 +80,6 @@ def add_task():
 add_btn = ctk.CTkButton(entry_frame, text="+", width=40, command=add_task, font=font_main, fg_color="#D6A87A", hover_color="#C98E6F")
 add_btn.pack(side="left")
 
-# Button actions
 def delete_task():
     for card, checkbox, var in tasks[:]:
         if var.get():
@@ -98,7 +97,7 @@ def update_task():
 def done_app():
     app.destroy()
 
-# Action Buttons
+
 btn_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 btn_frame.pack(pady=(10, 20))
 
