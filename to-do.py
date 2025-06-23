@@ -4,23 +4,18 @@ import random
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue") 
 
-
 app = ctk.CTk()
 app.title("☁️ Task Cloud")
 app.geometry("450x600")
 app.configure(fg_color="#FAF3E0")
-
 
 font_main = ctk.CTkFont("Segoe UI", 14)
 font_heading = ctk.CTkFont("Segoe UI", 16, weight="bold")
 font_sub = ctk.CTkFont("Segoe UI", 13)
 text_color = "#2F2F2F"
 
-
 task_colors = ["#F8D3DA", "#E9FCD5", "#D1F3F3", "#FDEBD0", "#D7BDE2", "#AED6F1"]
-
 tasks = []
-
 
 heading = ctk.CTkLabel(
     app,
@@ -39,10 +34,8 @@ subheading = ctk.CTkLabel(
 )
 subheading.pack(padx=20, pady=(0, 10), anchor="w")
 
-
 task_list_frame = ctk.CTkScrollableFrame(app, fg_color="#FAF3E0", width=400, height=350)
 task_list_frame.pack(padx=10, pady=10, fill="both", expand=True)
-
 
 def create_task_card(task_text):
     color = random.choice(task_colors)
@@ -63,7 +56,6 @@ def create_task_card(task_text):
     )
     checkbox.pack(padx=10, pady=10, anchor="w")
     tasks.append((card, checkbox, var))
-
 
 entry_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 entry_frame.pack(pady=5)
@@ -87,16 +79,19 @@ def delete_task():
             tasks.remove((card, checkbox, var))
 
 def update_task():
-    selected = [t for t in tasks if t[2].get()]
-    new_text = entry.get()
-    if selected and new_text:
-        for _, checkbox, _ in selected:
+    new_text = entry.get().strip()
+    if not new_text:
+        return  # Do nothing if input is empty
+
+    for card, checkbox, var in tasks:
+        if var.get():
             checkbox.configure(text=new_text)
-        entry.delete(0, "end")
+            var.set(False)  # Uncheck after updating
+            entry.delete(0, "end")
+            break  # Only update the first selected task
 
 def done_app():
     app.destroy()
-
 
 btn_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 btn_frame.pack(pady=(10, 20))
