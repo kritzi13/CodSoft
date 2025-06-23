@@ -19,3 +19,4 @@ Stay productive with pastel-colored task cards, a minimal interface, and intuiti
 
 🧠 Clean fonts and a soft professional color palette
 
+![image](https://github.com/user-attachments/assets/204e7acc-4cfb-4331-b9ed-bbae6457d300)
