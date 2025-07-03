@@ -1,27 +1,27 @@
 import customtkinter as ctk
 import random
 
-# Theme Setup
+
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
-# App Window
+
 app = ctk.CTk()
 app.title("☁️ Task Cloud")
 app.geometry("450x600")
 app.configure(fg_color="#FAF3E0")
 
-# Fonts and Colors
+
 font_main = ctk.CTkFont("Segoe UI", 14)
 font_heading = ctk.CTkFont("Segoe UI", 16, weight="bold")
 font_sub = ctk.CTkFont("Segoe UI", 13)
 text_color = "#2F2F2F"
 task_colors = ["#F8D3DA", "#E9FCD5", "#D1F3F3", "#FDEBD0", "#D7BDE2", "#AED6F1"]
 
-# Store Tasks
+
 tasks = []
 
-# --- Header ---
+
 heading = ctk.CTkLabel(
     app,
     text="Welcome Buddy,\nLet's make today productive!",
@@ -39,7 +39,7 @@ subheading = ctk.CTkLabel(
 )
 subheading.pack(padx=20, pady=(0, 10), anchor="w")
 
-# --- Scrollable Frame ---
+
 task_list_frame = ctk.CTkScrollableFrame(app, fg_color="#FAF3E0", width=400, height=350)
 task_list_frame.pack(padx=10, pady=10, fill="both", expand=True)
 
@@ -66,7 +66,7 @@ def create_task_card(task_text):
 
     tasks.append((card, checkbox, var, text_var))
 
-# --- Entry & Add Button ---
+
 entry_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 entry_frame.pack(pady=5)
 
@@ -85,7 +85,6 @@ add_btn = ctk.CTkButton(
 )
 add_btn.pack(side="left")
 
-# --- Actions ---
 def delete_task():
     for card, checkbox, var, text_var in tasks[:]:
         if var.get():
@@ -106,7 +105,7 @@ def update_task(): # to update the task click on the task then type in the input
 def done_app():
     app.destroy()
 
-# --- Action Buttons ---
+
 btn_frame = ctk.CTkFrame(app, fg_color="#FAF3E0")
 btn_frame.pack(pady=(10, 20))
 
@@ -126,6 +125,6 @@ delete_btn.grid(row=0, column=0, padx=10)
 update_btn.grid(row=0, column=1, padx=10)
 done_btn.grid(row=0, column=2, padx=10)
 
-# --- Run App ---
+
 app.mainloop()
 
