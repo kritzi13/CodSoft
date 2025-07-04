@@ -12,7 +12,7 @@ def divide(x, y):
         return "Cannot divide by zero!"
     return x / y
 
-print("Simple Calculator")
+print("JustCalc")
 print("Select operation:")
 print("1. Add")
 print("2. Subtract")
