@@ -9,29 +9,46 @@ def multiply(x, y):
 
 def divide(x, y):
     if y == 0:
-        return "Cannot divide by zero!"
+        return "Error: Cannot divide by zero."
     return x / y
 
-print("JustCalc")
-print("Select operation:")
-print("1. Add")
-print("2. Subtract")
-print("3. Multiply")
-print("4. Divide")
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
-choice = input("Enter choice (1/2/3/4): ")
+def get_operator():
+    operators = ['+', '-', '*', '/']
+    while True:
+        op = input("Choose operation (+, -, *, /): ")
+        if op in operators:
+            return op
+        else:
+            print("Invalid operator. Please choose from +, -, *, /.")
 
-if choice in ['1', '2', '3', '4']:
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+def calculator():
+    print("Welcome!")
+    while True:
+        num1 = get_number("Enter first number: ")
+        num2 = get_number("Enter second number: ")
+        operator = get_operator()
 
-    if choice == '1':
-        print("Result:", add(num1, num2))
-    elif choice == '2':
-        print("Result:", subtract(num1, num2))
-    elif choice == '3':
-        print("Result:", multiply(num1, num2))
-    elif choice == '4':
-        print("Result:", divide(num1, num2))
-else:
-    print("Invalid input!")
+        if operator == '+':
+            result = add(num1, num2)
+        elif operator == '-':
+            result = subtract(num1, num2)
+        elif operator == '*':
+            result = multiply(num1, num2)
+        elif operator == '/':
+            result = divide(num1, num2)
+
+        print(f"Result: {result}")
+
+        again = input("\nDo you want to perform another calculation? (yes/no): ").lower()
+        if again not in ['yes', 'y']:
+            print("Goodbye!")
+            break
+
+calculator()
